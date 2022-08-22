@@ -1,0 +1,51 @@
+[System]
+Name='prueba'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=8
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='error'
+Range=[-1 1.5]
+NumMFs=2
+MF1='En':'trapmf',[-1 -1 -0.375 0.875]
+MF2='Ep':'trapmf',[-0.375 0.875 1.5 1.5]
+
+[Input2]
+Name='cambio-error'
+Range=[-1 1.5]
+NumMFs=2
+MF1='CEn':'trapmf',[-1 -1 -0.375 0.875]
+MF2='CEp':'trapmf',[-0.375 0.875 1.5 1.5]
+
+[Input3]
+Name='integral-error'
+Range=[-1 1.5]
+NumMFs=2
+MF1='In':'trapmf',[-1 -1 -0.375 0.875]
+MF2='Ip':'trapmf',[-0.375 0.875 1.5 1.5]
+
+[Output1]
+Name='control'
+Range=[-1 1.5]
+NumMFs=3
+MF1='Un':'trapmf',[-1 -1 -0.375 0.25]
+MF2='Uz':'trimf',[-0.375 0.25 0.875]
+MF3='Up':'trapmf',[0.25 0.875 1.5 1.5]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 2 1, 1 (1) : 1
+1 1 2, 1 (1) : 1
+1 2 2, 2 (1) : 1
+2 1 1, 2 (1) : 1
+2 1 2, 3 (1) : 1
+2 2 1, 3 (1) : 1
+2 2 2, 3 (1) : 1
